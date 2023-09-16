@@ -1,0 +1,32 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint --ext .js,.ts,.vue"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/supabase": "^1.1.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vite-pwa/nuxt": "^0.1.1",
+    "eslint": "^8.49.0",
+    "nuxt": "^3.7.3",
+    "prettier": "^3.0.3",
+    "prisma": "5.3.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.8.1",
+    "@prisma/client": "5.3.1",
+    "v-calendar": "^3.0.3"
+  }
+}
