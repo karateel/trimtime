@@ -19,13 +19,15 @@
     "@typescript-eslint/parser": "^6.7.0",
     "@vite-pwa/nuxt": "^0.1.1",
     "eslint": "^8.49.0",
-    "nuxt": "^3.7.3",
+    "nuxt": "3.7.3",
     "prettier": "^3.0.3",
     "prisma": "5.3.1",
+    "sass": "^1.68.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.8.1",
+    "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
+    "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "5.3.1",
     "v-calendar": "^3.0.3"
   }

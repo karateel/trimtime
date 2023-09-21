@@ -1,17 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  vite: {
-    base: '/_nuxt/'
-  },
   modules: [
     '@nuxtjs/supabase',
     '@nuxt/ui',
-    // '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
-    '@vueuse/nuxt',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt'
   ],
+  imports: {
+    dirs: ['./store']
+  },
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate'],
+  },
+  css: ['~/assets/main.css'],
   colorMode: {
     preference: 'system',
     fallback: 'light',
@@ -21,6 +25,7 @@ export default defineNuxtConfig({
   },
   ui: {
     global: true,
+    icons: 'all'
   },
   supabase: {
     redirect: false,

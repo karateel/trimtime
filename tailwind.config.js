@@ -13,6 +13,19 @@ module.exports = {
     `/error.{js,ts,vue}`,
     `/app.config.{js,ts}`
   ],
+  theme: {
+    extend: {
+      animation: {
+        fade: 'fadeOut .3s ease-in-out',
+      },
+      keyframes: theme => ({
+        fadeOut: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      }),
+    },
+  },
   variants: {
     extend: {},
   },
