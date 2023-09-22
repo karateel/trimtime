@@ -4,9 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
     '@nuxt/ui',
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
-    '@nuxtjs/tailwindcss',
     '@pinia/nuxt'
   ],
   imports: {
@@ -15,7 +14,6 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
   },
-  css: ['~/assets/main.css'],
   colorMode: {
     preference: 'system',
     fallback: 'light',
@@ -25,7 +23,6 @@ export default defineNuxtConfig({
   },
   ui: {
     global: true,
-    icons: 'all'
   },
   supabase: {
     redirect: false,
@@ -33,8 +30,8 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Nuxt Vite PWA',
-      short_name: 'NuxtVitePWA',
+      name: 'TrimTime',
+      short_name: 'TT',
       theme_color: '#ffffff',
       icons: [
         {

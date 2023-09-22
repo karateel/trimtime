@@ -7,4 +7,4 @@ export const useMenuStore = defineStore('menu', {
         this.flag = !this.flag;
       },
     },
-  });
+  })
