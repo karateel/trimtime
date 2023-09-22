@@ -6,9 +6,6 @@
         <main class="main-content">
             <slot />
         </main>
-        <footer class="main-footer">
-            Copyright &copy; 2023 My Company.
-        </footer>
     </div>
 </template>
 
