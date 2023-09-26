@@ -4,7 +4,7 @@
       account</h1>
     <UForm @submit.prevent="signUp" :state="state"
       class="grid gap-8 text-center justify-items-center rounded-md p-4 border border-sky-300">
-      <ErrorAlert :error-msg="authError" @clearError="clearError" />
+      <ErrorAlert :error-msg="authError" />
       <UFormGroup label="Name" name="first-name"
         class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
         <UInput v-model="state.name" placeholder="First name" type="text"
@@ -82,9 +82,5 @@ const signUp = async () => {
     loading.value = false
     authError.value = 'Failed to fetch'
   }
-}
-
-const clearError = () => {
-  authError.value = ''
 }
 </script>
