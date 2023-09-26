@@ -1,57 +1,74 @@
 <template>
-    <section class="container mx-auto flex flex-wrap items-center justify-center text-gray-400">
-        <UForm @submit.prevent="userLogin"
-            class="bg-opacity-50 mt-10 flex w-full flex-col rounded-lg bg-[#242424] p-8 md:mt-0">
-            <h2 class="mb-5 text-lg font-medium text-[#aac8e4]">Login</h2>
-            <UFormGroup size="lg" label="email" name="email" class="text-sm leading-7 text-gray-400 rounded" required>
-                <UInput placeholder="you@example.com" icon="i-heroicons-envelope" type="email"
-                    class="bg-opacity-20 w-full text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out"
-                    v-model="email" />
-            </UFormGroup>
-            <UFormGroup size="lg" label="password" name="password" class="text-sm leading-7 text-gray-400 rounded" required>
-                <UInput v-model="password"
-                    class="bg-opacity-20 w-full text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out"
-                    type="password" />
-            </UFormGroup>
-            <UButton
-                class="rounded border-0 bg-[#42b883] py-2 px-8 font-sans font-bold text-[#213547] transition-colors duration-500 hover:bg-[#42d392] focus:outline-none">
-                Submit
-            </UButton>
-            <span class="bg-opacity-50 absolute right-8 top-8 rounded-lg bg-[#242424] p-8 px-4 py-2 text-red-500"
-                v-if="errorMsg">{{ errorMsg }}</span>
-            <p class="mt-3 text-xs">You don't have an account yet?</p>
-            <UButton active-class="w-fit text-sm" to="./register">Registration
-            </UButton>
-        </UForm>
-    </section>
+  <UContainer class="grid gap-8 text-center justify-center">
+    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Sign in</h1>
+    <UForm @submit.prevent="login" :state="state"
+      class="grid gap-8 text-center justify-center rounded-md p-4 border border-sky-300">
+      <ErrorAlert :error-msg="authError" @clearError="clearError" />
+      <UContainer class="grid gap-4">
+        <UFormGroup label="Email" name="email">
+          <UInput v-model="state.email" placeholder="Email" type="email" />
+        </UFormGroup>
+        <UFormGroup label="Password" name="password">
+          <UInput v-model="state.password" placeholder="Password" type="password" />
+        </UFormGroup>
+      </UContainer>
+      <div class="grid grid-cols-1 gap-4 justify-items-center">
+        <UButton type="submit" class="grid" :disabled="loading" :class="{ loading: loading }">Sign in
+        </UButton>
+        <UButton to="/auth/forgot-password" variant="link">Forgot your password?</UButton>
+      </div>
+    </UForm>
+    <div class="grid grid-cols-1 justify-center">
+      <UButton to="/auth/register" class="relative z-10 justify-center items-center gap-2 min-h-[1.25rem]">
+        Create new account
+      </UButton>
+    </div>
+  </UContainer>
 </template>
 
-<script setup>
-const user = useSupabaseUser();
-const email = ref('');
-const password = ref('');
-const errorMsg = ref('');
-const { auth } = useSupabaseClient();
-const userLogin = async () => {
-    try {
-        const { error } = await auth.signIn({
-            email: email.value,
-            password: password.value,
-        });
-        email.value = '';
-        password.value = '';
-        if (error) throw error;
-    } catch (error) {
-        errorMsg.value = error.message;
-        setTimeout(() => {
-            errorMsg.value = '';
-        }, 3000);
-    }
-};
+<script setup lang="ts">
+import { UserCredentials } from '~/interface';
 
-watchEffect(() => {
-    if (user.value) {
-        return navigateTo('/');
-    }
+definePageMeta({
+  layout: "auth"
+})
+useHead({
+  title: 'Login'
+})
+
+const state = ref<UserCredentials>({
+  email: '',
+  password: ''
+})
+
+const user = useSupabaseUser()
+const loading = ref(false)
+const client = useSupabaseClient()
+const authError = ref('')
+
+watchEffect(async () => {
+  if (user.value) {
+    await navigateTo('/')
+  }
 });
+
+const login = async () => {
+  const { email, password } = state.value
+  loading.value = true
+  const { error } = await client.auth.signInWithPassword({
+    email: email,
+    password: password
+  })
+  if (error) {
+    loading.value = false
+    authError.value = 'Invalid login credentials'
+    setTimeout(() => {
+      authError.value = ''
+    }, 5000)
+  }
+}
+
+const clearError = () => {
+  authError.value = '';
+};
 </script>

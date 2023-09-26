@@ -17,15 +17,15 @@
             <UIcon name="i-heroicons-calendar-days text-3xl" v-if="!menuStore.flag"/>
             <Calendar v-else/>
             <div class="my-0" :class="{'mt-4': menuStore.flag}">
-                <NuxtLink to="/" class="flex items-center py-2 pr-4 w-max gap-4">
+                <NuxtLink to="/" class="flex items-center py-2 pr-4 w-max gap-4 hover:text-sky-600">
                     <UIcon name="i-heroicons-home-20-solid text-3xl" />
                     <span :class="{ 'hidden': !menuStore.flag }">Home</span>
                 </NuxtLink>
-                <NuxtLink to="/about" class="flex items-center py-2 pr-4 w-max gap-4">
+                <NuxtLink to="/about" class="flex items-center py-2 pr-4 w-max gap-4 hover:text-sky-600">
                     <UIcon name="i-heroicons-document-text-20-solid text-3xl" />
                     <span :class="{ 'hidden': !menuStore.flag }">About</span>
                 </NuxtLink>
-                <NuxtLink to="/settings" class="flex items-center py-2 pr-4 w-max gap-4">
+                <NuxtLink to="/settings" class="flex items-center py-2 pr-4 w-max gap-4 hover:text-sky-600">
                     <UIcon name="i-heroicons-cog-8-tooth-20-solid text-3xl">settings</UIcon>
                     <span :class="{ 'hidden': !menuStore.flag }">Settings</span>
                 </NuxtLink>
