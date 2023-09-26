@@ -1,73 +1,90 @@
-<template >
-    <section class="container mx-auto flex flex-wrap items-center justify-center text-gray-400">
-        <UForm @submit.prevent="userRegister"
-            class="bg-opacity-50 mt-10 flex w-full flex-col rounded-lg bg-[#242424] p-8 md:mt-0 gap-4">
-            <h2 class="mb-5 text-lg font-medium text-[#aac8e4]">Register</h2>
-            <UFormGroup size="lg" label="email" name="email" class="text-sm leading-7 text-gray-400 rounded" required>
-                <UInput placeholder="you@example.com" icon="i-heroicons-envelope" type="email"
-                    class="bg-opacity-20 w-full text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out"
-                    v-model="email" />
-            </UFormGroup>
-            <UFormGroup size="lg" label="password" name="password" class="text-sm leading-7 text-gray-400 rounded" required>
-                <UInput v-model="password"
-                    class="bg-opacity-20 w-full text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out"
-                    type="password" />
-            </UFormGroup>
-            <UFormGroup size="lg" label="confirm-password" name="confirm-password"
-                class="text-sm leading-7 text-gray-400 rounded" required>
-                <UInput v-model="confirmPassword"
-                    class="bg-opacity-20 w-full text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out"
-                    type="password" />
-            </UFormGroup>
-            <UButton type="submit" class="rounded text-center justify-center">
-                Submit
-            </UButton>
-            <span class="bg-opacity-50 absolute right-8 top-8 rounded-lg bg-[#242424] p-8 px-4 py-2 text-red-500"
-                v-if="errorMsg">{{ errorMsg }}</span>
-            <p class="mt-3 text-xs">Do you have an account yet?</p>
-            <UButton class="w-fit text-sm text-[#aac8e4] hover:text-[#42b883]" to="./login">Login
-            </UButton>
-        </UForm>
-    </section>
+<template>
+  <UContainer class="grid gap-8 text-center justify-center">
+    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Create an
+      account</h1>
+    <UForm @submit.prevent="signUp" :state="state"
+      class="grid gap-8 text-center justify-items-center rounded-md p-4 border border-sky-300">
+      <ErrorAlert :error-msg="authError" @clearError="clearError" />
+      <UFormGroup label="Name" name="first-name"
+        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
+        <UInput v-model="state.name" placeholder="First name" type="text"
+          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
+      </UFormGroup>
+      <UFormGroup label="Lastname" name="last-name"
+        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
+        <UInput v-model="state.lastname" placeholder="Last name" type="text"
+          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
+      </UFormGroup>
+      <UFormGroup label="Email" name="email"
+        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
+        <UInput v-model="state.email" placeholder="Email" type="email"
+          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
+      </UFormGroup>
+      <UFormGroup label="Password" name="password"
+        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
+        <UInput v-model="state.password" placeholder="Password" type="password"
+          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
+      </UFormGroup>
+      <UButton class="relative z-10 flex justify-center items-center gap-2 min-h-[1.25rem]" type="submit"
+        :loading="loading">
+        Sign up
+      </UButton>
+      <UButton to="/auth/login" variant="link">Already have an account?</UButton>
+    </UForm>
+  </UContainer>
 </template>
 
-<script setup>
-const user = useSupabaseUser();
-const email = ref('');
-const password = ref('');
-const confirmPassword = ref('');
-const errorMsg = ref('');
-const { auth } = useSupabaseClient();
-const userRegister = async () => {
-    if (password.value !== confirmPassword.value) {
-        errorMsg.value = 'Passwords do not match!';
-        password.value = '';
-        confirmPassword.value = '';
-        setTimeout(() => {
-            errorMsg.value = '';
-        }, 3000);
-        return;
-    }
-    try {
-        const { error } = await auth.signUp({
-            email: email.value,
-            password: password.value,
-        });
-        email.value = '';
-        password.value = '';
-        confirmPassword.value = '';
-        if (error) throw error;
-    } catch (error) {
-        errorMsg.value = error.message;
-        setTimeout(() => {
-            errorMsg.value = '';
-        }, 3000);
-    }
-};
+<script setup lang="ts">
+import { RegistrationData } from '~/interface';
 
-watchEffect(() => {
-    if (user.value) {
-        return navigateTo('/');
-    }
+definePageMeta({
+  layout: "auth"
+})
+useHead({
+  title: 'Register'
+})
+
+const state = ref<RegistrationData>({
+  email: '',
+  password: '',
+  name: '',
+  lastname: '',
+})
+
+const client = useSupabaseClient()
+const user = useSupabaseUser()
+const loading = ref(false)
+const authError = ref('')
+
+watchEffect(async () => {
+  if (user.value) {
+    await navigateTo('/')
+  }
 });
+
+const signUp = async () => {
+  const { email, password, name, lastname } = state.value
+
+  if (!name) return authError.value = 'First name required';
+  if (!lastname) return authError.value = 'Last name required';
+  loading.value = true
+  const { error } = await client.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        first_name: name,
+        last_name: lastname,
+      }
+    }
+  })
+  if (error) {
+    loading.value = false
+    authError.value = 'Failed to fetch'
+  }
+}
+
+const clearError = () => {
+  authError.value = ''
+}
 </script>

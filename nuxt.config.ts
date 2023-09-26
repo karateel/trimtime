@@ -8,8 +8,17 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@pinia/nuxt'
   ],
+  app: {
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      charset: 'utf-16',
+      viewport: 'width=500, initial-scale=1',
+  }
+  },
+  css: ['@/assets/main.css'],
   imports: {
-    dirs: ['./store']
+    dirs: ['./store', './interface']
   },
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
