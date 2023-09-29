@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
   ],
   app: {
     layoutTransition: { name: 'layout', mode: 'out-in' },
@@ -18,7 +18,11 @@ export default defineNuxtConfig({
   },
   css: ['@/assets/main.css'],
   imports: {
-    dirs: ['./store', './interface/*']
+    dirs: [
+      '~/store/**', 
+      '~/interface/'
+    ],
+    global: true
   },
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
@@ -34,7 +38,12 @@ export default defineNuxtConfig({
     global: true,
   },
   supabase: {
-    redirect: false,
+    redirect: true,
+    redirectOptions: {
+      login: '/login',
+      callback: '/',
+      exclude: [],
+    }
   },
   pwa: {
     registerType: 'autoUpdate',

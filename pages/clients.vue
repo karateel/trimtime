@@ -1,7 +1,7 @@
 <template>
-    <div>
-        Settings page
-    </div>
+    <UContainer>
+        clients page
+    </UContainer>
 </template>
 
 <script setup lang="ts">

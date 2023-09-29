@@ -3,7 +3,7 @@
     <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Sign in</h1>
     <UForm @submit.prevent="login" :state="state"
       class="grid gap-8 text-center justify-center rounded-md p-4 border border-sky-300">
-      <ErrorAlert :error-msg="authError" @clearError="clearError" />
+      <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <UContainer class="grid gap-4">
         <UFormGroup label="Email" name="email">
           <UInput v-model="state.email" placeholder="Email" type="email" />

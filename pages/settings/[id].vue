@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <h1>This is the nested route for user</h1>
-    </div>
+    <NuxtPage/>
 </template>
 
 <script setup lang="ts">

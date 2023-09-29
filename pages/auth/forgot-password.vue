@@ -2,8 +2,8 @@
   <UContainer class="grid justify-center">
     <h1 class="text-center mb-8">Forgot password</h1>
     <UForm :state="state" @submit.prevent="resetPassword" class="grid justify-center gap-8">
-      <ErrorAlert :error-msg="authError" @clearError="clearError" />
-      <SuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
+      <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
+      <AlertsSuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
       <UFormGroup label="Email" name="email">
         <UInput v-model="state.email" placeholder="Email" type="email" />
       </UFormGroup>
