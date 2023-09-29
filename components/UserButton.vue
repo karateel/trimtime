@@ -22,14 +22,22 @@
 <script setup>
 const client = useSupabaseClient()
 const user = useSupabaseUser()
+const router = useRouter()
+
 
 const items = ref([
     [{
         slot: 'account',
+        click: () => {
+            router.push({ path: '/profile' })
+        }
     }],
     [{
         label: 'Settings',
         icon: 'i-heroicons-cog-8-tooth',
+        click: () => {
+            router.push({ path: '/settings/' })
+        }
     }],
     [{
         label: 'Sign out',

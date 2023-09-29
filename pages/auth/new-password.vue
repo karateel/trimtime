@@ -3,8 +3,8 @@
     <h1 class="text-center">New password</h1>
     <UForm :state="state" @submit.prevent="updatepassword"
       class="grid justify-center gap-8 text-center justify-items-center rounded-md p-4 border border-sky-300">
-      <ErrorAlert :error-msg="authError" @clearError="clearError" />
-      <SuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
+      <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
+      <AlertsSuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
       <UFormGroup label="Password" name="password"
         class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
         <UInput v-model="state.password" placeholder="Password" type="password"

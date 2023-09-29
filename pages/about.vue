@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <UButton>testing</UButton>
-    </div>
+    <UContainer>
+        About
+    </UContainer>
 </template>
 
 <script setup lang="ts">
