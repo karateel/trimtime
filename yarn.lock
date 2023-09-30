@@ -1676,7 +1676,7 @@
     which "^3.0.1"
     ws "^8.13.0"
 
-"@nuxt/kit@3.7.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.1", "@nuxt/kit@^3.7.3":
+"@nuxt/kit@3.7.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.1":
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.7.3.tgz#24a32bdf2eaa3f8f6c81079fb2a3543980b55d26"
   integrity sha512-bhP02i6CNti15Z4ix3LpR3fd1ANtTcpfS3CDSaCja24hDt3UxIasyp52mqD9LRC+OxrUVHJziB18EwUtS6RLDQ==
@@ -1761,15 +1761,15 @@
   resolved "https://registry.yarnpkg.com/@nuxt/ui-templates/-/ui-templates-1.3.1.tgz#35f5c1adced7495a8c1284e37246a16e373ef5d5"
   integrity sha512-5gc02Pu1HycOVUWJ8aYsWeeXcSTPe8iX8+KIrhyEtEoOSkY0eMBuo0ssljB8wALuEmepv31DlYe5gpiRwkjESA==
 
-"@nuxt/ui@npm:@nuxt/ui-edge@latest":
-  version "2.8.1-28255083.853d58a"
-  resolved "https://registry.yarnpkg.com/@nuxt/ui-edge/-/ui-edge-2.8.1-28255083.853d58a.tgz#c67c2de9c26d7d4399119e4cf76a427af9eb0245"
-  integrity sha512-xVda07Sa5ySoR6PE/9GwTIOMVi6/bGSWyVL8lwXV4J2xep70EDzbMSPUrr0eOjiVcpa37IKnCX4wsMof323SlQ==
+"@nuxt/ui@workspace:latest":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/ui/-/ui-2.8.1.tgz#4a1604c08b8669d67600cadfb7e9034c19048ee9"
+  integrity sha512-SVOo1PTroStUyv8ZcXTdDVgkV9U2Q0dtq7nQDF7NNZkvyH96Zbrbdk11wr1uHKuQdTcaEAq50OGleD+t6ceWEQ==
   dependencies:
     "@egoist/tailwindcss-icons" "^1.1.0"
     "@headlessui/vue" "^1.7.16"
     "@iconify-json/heroicons" "^1.1.12"
-    "@nuxt/kit" "^3.7.3"
+    "@nuxt/kit" "^3.7.1"
     "@nuxtjs/color-mode" "^3.3.0"
     "@nuxtjs/tailwindcss" "^6.8.0"
     "@popperjs/core" "^2.11.8"
@@ -1782,9 +1782,7 @@
     "@vueuse/math" "^10.4.1"
     defu "^6.1.2"
     fuse.js "^6.6.2"
-    ohash "^1.1.3"
-    pathe "^1.1.1"
-    scule "^1.0.0"
+    lodash-es "^4.17.21"
     tailwind-merge "^1.14.0"
     tailwindcss "^3.3.3"
 
@@ -6171,6 +6169,11 @@ locate-path@^6.0.0:
   integrity sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
   dependencies:
     p-locate "^5.0.0"
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"

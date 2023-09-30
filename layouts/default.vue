@@ -1,10 +1,12 @@
 <template>
-  <div class="h-screen">
+  <div>
     <NavAppHeader />
-    <main class="main-content relative" :class="{ 'ml-64': menuStore.flag, 'ml-12': !menuStore.flag }">
-      <NavAppSidebar />
+    <NavAppNavToggler />
+    <NavAppSidebar />
+    <UContainer as="main" class="min-h-screen">
+
       <slot />
-    </main>
+    </UContainer>
   </div>
 </template>
 

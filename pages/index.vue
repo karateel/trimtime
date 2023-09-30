@@ -1,7 +1,7 @@
 <template>
-    <UContainer>
+    <div>
         Home page
-    </UContainer>
+    </div>
 </template>
 
 <script setup lang="ts">

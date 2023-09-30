@@ -1,6 +1,8 @@
 <template>
-    <VCalendarDatePicker v-model="date" transparent borderless :is-dark="isDark" title-position="left" trim-weeks
-        :first-day-of-week="2" />
+    <div>
+        <VCalendarDatePicker v-model="date" transparent borderless :is-dark="isDark" title-position="left" trim-weeks
+            :first-day-of-week="2" />
+    </div>
 </template>
   
 <script setup lang="ts">

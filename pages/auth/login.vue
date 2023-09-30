@@ -2,7 +2,7 @@
   <UContainer class="grid gap-8 text-center justify-center">
     <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Sign in</h1>
     <UForm @submit.prevent="login" :state="state"
-      class="grid gap-8 text-center justify-center rounded-md p-4 border border-sky-300">
+      class="grid gap-8 text-center justify-center rounded-md p-4 border border-primary-900">
       <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <UContainer class="grid gap-4">
         <UFormGroup label="Email" name="email">
