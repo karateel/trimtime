@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     '@nuxtjs/supabase',
     '@nuxt/ui',
@@ -12,11 +12,11 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'layout', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
-      charset: 'utf-16',
-      viewport: 'width=500, initial-scale=1',
+      charset: 'utf-8',
+      viewport: 'width=device-width',
   }
   },
-  css: ['@/assets/main.css'],
+  css: ['/assets/main.css'],
   imports: {
     dirs: [
       '~/store/**', 
@@ -38,11 +38,14 @@ export default defineNuxtConfig({
     global: true,
   },
   supabase: {
-    redirect: true,
+    redirect: false,
     redirectOptions: {
-      login: '/login',
+      login: '/auth/login',
+      register: '/auth/register',
       callback: '/',
-      exclude: [],
+      exclude: [
+        '/auth/*'
+      ],
     }
   },
   pwa: {
