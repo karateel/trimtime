@@ -14,9 +14,13 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width',
+      script: [{
+        src: '/_nuxt/node_modules/preline/dist/preline.js',
+        defer: true
+      }]
   }
   },
-  css: ['/assets/main.css'],
+  css: ['assets/main.css'],
   imports: {
     dirs: [
       '~/store/**', 
@@ -41,7 +45,6 @@ export default defineNuxtConfig({
     redirect: false,
     redirectOptions: {
       login: '/auth/login',
-      register: '/auth/register',
       callback: '/',
       exclude: [
         '/auth/*'

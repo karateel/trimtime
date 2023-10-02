@@ -2,6 +2,9 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>>{
+    content: [
+      '/node_modules/preline/dist/*.js',
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -39,5 +42,8 @@ export default <Partial<Config>>{
         'span-8': 'span 8 / span 8'
       }
     }
-  }
+  },
+  plugins: [
+    require('preline/plugin')
+  ]
 }

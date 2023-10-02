@@ -2,7 +2,7 @@
     <div class="sticky top-0 inset-x-0 z-20 bg-white px-4 sm:px-6 md:px-8 lg:hidden dark:bg-gray-800">
         <div class="flex items-center py-4">
             <UButton class="text-gray-500 hover:text-gray-600" icon="i-heroicons-queue-list" variant="ghost" color="gray"
-                @click="menuStore.toggleMenu()">
+                data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle Navigation</span>
             </UButton>
 
@@ -31,5 +31,4 @@ import { useMenuStore } from '~/store/navbarStore';
 const menuStore = useMenuStore();
 </script>
   
-<style scoped></style>
-  
+<style scoped></style>  
