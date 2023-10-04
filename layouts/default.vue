@@ -1,17 +1,28 @@
 <template>
-  <div>
+  <UContainer id="content" as="div" class="min-h-screen lg:grid" :ui="{
+    constrained: 'w-full max-w-full px-0 sm:px-0 lg:px-0'
+  }">
     <NavAppHeader />
-    <NavAppNavToggler />
-    <NavAppSidebar />
-    <UContainer as="main" class="min-h-screen pt-5 lg:pt-10 lg:pl-72" :ui="{
-      constrained: 'w-full max-w-full'
-    }">
+    <UContainer id="main" as="main" class="w-full pt-2" :class="[menuStore.flag ? 'pl-36' : '']">
       <slot />
     </UContainer>
-  </div>
+  </UContainer>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { useMenuStore } from '@/store/navbarStore'
 
-
+const menuStore = useMenuStore()
 </script>
+
+<style scoped>
+#content {
+  grid-template-areas: "header header" "sidebar main";
+  grid-template-columns: max-content;
+  grid-template-rows: max-content;
+}
+
+#main {
+  grid-area: main;
+}
+</style>
