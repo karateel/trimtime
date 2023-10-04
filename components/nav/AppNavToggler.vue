@@ -1,12 +1,12 @@
 <template>
-    <div class="sticky top-0 inset-x-0 z-20 bg-white px-4 sm:px-6 md:px-8 lg:hidden dark:bg-gray-800">
+    <div class="sticky top-0 inset-x-0 bg-white px-4 sm:px-6 md:px-8 lg:hidden dark:bg-gray-800">
         <div class="flex items-center py-4">
             <UButton class="text-gray-500 hover:text-gray-600" icon="i-heroicons-queue-list" variant="ghost" color="gray"
-                data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation">
+                data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation"
+                @click="menuStore.toggleMenu()">
                 <span class="sr-only">Toggle Navigation</span>
             </UButton>
 
-            <!-- Breadcrumb -->
             <ol class="ml-3 flex items-center whitespace-nowrap min-w-0" aria-label="Breadcrumb">
                 <li class="flex items-center text-sm text-gray-800 dark:text-gray-400">
                     Application Layout
@@ -20,7 +20,6 @@
                     Dashboard
                 </li>
             </ol>
-            <!-- End Breadcrumb -->
         </div>
     </div>
 </template>
@@ -31,4 +30,3 @@ import { useMenuStore } from '~/store/navbarStore';
 const menuStore = useMenuStore();
 </script>
   
-<style scoped></style>  

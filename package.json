@@ -29,7 +29,6 @@
     "@nuxt/ui": "workspace:latest",
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "5.3.1",
-    "preline": "^1.9.0",
     "v-calendar": "^3.0.3"
   }
 }
