@@ -1,15 +1,15 @@
 <template>
-  <UContainer class="grid justify-center">
-    <h1 class="text-center mb-8">Forgot password</h1>
-    <UForm :state="state" @submit.prevent="resetPassword" class="grid justify-center gap-8">
+  <UContainer class="grid gap-8 justify-center text-center">
+    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] font-semibold text-xl text-tuna dark:text-slate-300">
+      Forgot password</h1>
+    <UForm :state="state" @submit.prevent="resetPassword"
+      class="grid gap-6 text-center justify-center rounded-md p-4 border border-primary-500">
       <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <AlertsSuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
       <UFormGroup label="Email" name="email">
-        <UInput v-model="state.email" placeholder="Email" type="email" />
+        <UInput v-model="state.email" placeholder="Email" type="email" variant="outline" color="primary" />
       </UFormGroup>
-      <UButton type="submit" :loading="loading">
-        Request
-      </UButton>
+      <UButton type="submit" :loading="loading" label="Request" block />
     </UForm>
   </UContainer>
 </template>

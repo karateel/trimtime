@@ -1,15 +1,16 @@
 <template>
   <UContainer class="grid gap-8 text-center justify-center">
-    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Sign in</h1>
+    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] font-semibold text-xl text-tuna dark:text-slate-300">
+      Sign in</h1>
     <UForm @submit.prevent="login" :state="state"
-      class="grid gap-8 text-center justify-center rounded-md p-4 border border-primary-900">
+      class="grid gap-8 text-center justify-center rounded-md p-4 border border-primary-500">
       <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <UContainer class="grid gap-4">
         <UFormGroup label="Email" name="email">
-          <UInput v-model="state.email" placeholder="Email" type="email" />
+          <UInput v-model="state.email" placeholder="Email" type="email" variant="outline" color="primary" />
         </UFormGroup>
         <UFormGroup label="Password" name="password">
-          <UInput v-model="state.password" placeholder="Password" type="password" />
+          <UInput v-model="state.password" placeholder="Password" type="password" variant="outline" color="primary" />
         </UFormGroup>
       </UContainer>
       <div class="grid grid-cols-1 gap-4 justify-items-center">
