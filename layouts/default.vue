@@ -3,16 +3,14 @@
     constrained: 'w-full max-w-full px-0 sm:px-0 lg:px-0'
   }">
     <NavAppHeader />
-    <UContainer id="main" as="main" class="w-full pt-2" :class="[menuStore.flag ? 'pl-36' : '']">
+    <UContainer id="main" as="main" class="w-full pt-2">
       <slot />
     </UContainer>
   </UContainer>
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from '@/store/navbarStore'
 
-const menuStore = useMenuStore()
 </script>
 
 <style scoped>
