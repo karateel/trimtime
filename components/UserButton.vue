@@ -7,21 +7,19 @@
                 <p>
                     Signed in as
                 </p>
-                <p class="truncate font-medium text-gray-900 dark:text-white">
+                <p class="truncate font-medium">
                     {{ user.email }}
                 </p>
             </div>
         </template>
         <template #item="{ item }">
             <span class="truncate">{{ item.label }}</span>
-            <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
+            <UIcon :name="item.icon" class="ms-auto" />
         </template>
     </UDropdown>
 
-    <UButton v-else to="/auth/login" label="Login" variant="link"
-        class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-        Log
-        in</UButton>
+    <UButton v-else to="/auth/login" label="Login" variant="link" color="primary"
+        class="px-4 lg:px-5 py-2 lg:py-2.5 mr-2" />
 </template>
 
 <script setup>

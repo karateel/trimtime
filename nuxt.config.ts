@@ -14,10 +14,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width',
-
-  }
+    }
   },
-  css: ['assets/main.css'],
+  css: ['~/assets/main.css'],
   imports: {
     dirs: [
       '~/store/**', 
@@ -37,6 +36,9 @@ export default defineNuxtConfig({
   },
   ui: {
     global: true,
+  },
+  tailwindcss: {
+    exposeConfig: true,
   },
   supabase: {
     redirect: false,

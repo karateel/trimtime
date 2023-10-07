@@ -1,13 +1,15 @@
 <template>
     <div>
         <VCalendarDatePicker v-model="date" transparent borderless :is-dark="isDark" title-position="left" trim-weeks
-            :first-day-of-week="2" />
+            :first-day-of-week="2" :color="selectedColor" />
     </div>
 </template>
   
 <script setup lang="ts">
 import { DatePicker as VCalendarDatePicker } from 'v-calendar'
 import 'v-calendar/dist/style.css'
+
+const selectedColor = ref('primary')
 
 const props = defineProps({
     modelValue: {

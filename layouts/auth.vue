@@ -1,6 +1,6 @@
 <template>
-  <UContainer class="bg-fcfcfc text-12161e h-full">
-    <div class="bg-fcfcfc text-12161e h-screen overflow-y-auto relative">
+  <UContainer class="h-full">
+    <div class="h-screen overflow-y-auto relative">
       <div class="relative min-h-screen flex justify-center items-center box-border">
         <AppBackToLogin />
         <AppBackToHome />

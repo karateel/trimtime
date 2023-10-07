@@ -1,35 +1,31 @@
 <template>
   <UContainer class="grid gap-8 text-center justify-center">
-    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] text-[#f6f6f6] font-semibold text-xl">Create an
+    <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] font-semibold text-xl text-tuna dark:text-slate-300">
+      Create an
       account</h1>
     <UForm @submit.prevent="signUp" :state="state"
-      class="grid gap-8 text-center justify-items-center rounded-md p-4 border border-sky-300">
+      class="grid gap-6 text-center justify-center rounded-md p-4 border border-primary-500">
       <AlertsErrorAlert :error-msg="authError" />
-      <UFormGroup label="Name" name="first-name"
-        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
-        <UInput v-model="state.name" placeholder="First name" type="text"
-          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
-      </UFormGroup>
-      <UFormGroup label="Lastname" name="last-name"
-        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
-        <UInput v-model="state.lastname" placeholder="Last name" type="text"
-          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
-      </UFormGroup>
-      <UFormGroup label="Email" name="email"
-        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
-        <UInput v-model="state.email" placeholder="Email" type="email"
-          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
-      </UFormGroup>
-      <UFormGroup label="Password" name="password"
-        class="block relative py-2.25 px-3 text-base cursor-text transition-all duration-200">
-        <UInput v-model="state.password" placeholder="Password" type="password"
-          class="placeholder:transition-all placeholder:duration-200 placeholder:text-c2c3c7 hover:placeholder-91949b placeholder:focus-within:text-91949b" />
-      </UFormGroup>
-      <UButton class="relative z-10 flex justify-center items-center gap-2 min-h-[1.25rem]" type="submit"
-        :loading="loading">
-        Sign up
-      </UButton>
-      <UButton to="/auth/login" variant="link">Already have an account?</UButton>
+      <UContainer class="grid gap-4">
+        <UFormGroup label="Name" name="first-name">
+          <UInput v-model="state.name" placeholder="First name" type="text" variant="outline" color="primary" />
+        </UFormGroup>
+        <UFormGroup label="Lastname" name="last-name">
+          <UInput v-model="state.lastname" placeholder="Last name" type="text" variant="outline" color="primary" />
+        </UFormGroup>
+        <UFormGroup label="Email" name="email">
+          <UInput v-model="state.email" placeholder="Email" type="email" variant="outline" color="primary" />
+        </UFormGroup>
+        <UFormGroup label="Password" name="password">
+          <UInput v-model="state.password" placeholder="Password" type="password" variant="outline" color="primary" />
+        </UFormGroup>
+      </UContainer>
+      <div class="grid grid-cols-1 gap-4 justify-items-center">
+        <UButton class="grid" type="submit" :loading="loading">
+          Sign up
+        </UButton>
+      </div>
+      <UButton to="/auth/login" variant="link" class="justify-center">Already have an account?</UButton>
     </UForm>
   </UContainer>
 </template>

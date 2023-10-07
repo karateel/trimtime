@@ -1,12 +1,13 @@
 <template>
     <TransitionRoot :show="menuStore.flag">
-        <Dialog as="div" @close="menuStore.flag = false" class="fixed inset-0 z-50 lg:hidden bg-gray-800 w-36">
+        <Dialog as="div" @close="menuStore.flag = false"
+            class="fixed inset-0 z-50 lg:hidden dark:bg-tundora bg-mercury w-36">
             <TransitionChild enter="transition ease-in-out duration-200 transform" enter-from="-translate-x-full"
                 enter-to="translate-x-0" leave="transition ease-in-out duration-200 transform" leave-from="translate-x-0"
                 leave-to="-translate-x-full" as="template">
                 <div class="flex relative z-10 flex-col w-36 h-full lg:hidden">
                     <UVerticalNavigation :links="links" class="pt-6 px-3 lg:p-6 w-full flex flex-col flex-wrap" />
-                    <Calendar v-show="calendarStore.isCalendarVisible" class="hidden lg:block" />
+                    <AppCalendar v-show="calendarStore.isCalendarVisible" class="hidden lg:block" />
 
                     <ThemeModeButton class="absolute bottom-2 left-2" />
                 </div>
@@ -14,13 +15,11 @@
         </Dialog>
     </TransitionRoot>
 
-    <aside id="sidebar" class="hidden w-36 lg:w-64 lg:block bg-gray-800">
-        <ULink class="flex-none text-xl font-semibold dark:text-white px-6" to="/" aria-label="Brand">
-            TrimTime
-        </ULink>
+    <!-- ToDo: Rewrite in USlidebar component! -->
 
+    <aside id="sidebar" class="hidden w-36 lg:w-64 lg:block dark:bg-tundora bg-mercury">
         <UVerticalNavigation :links="links" class="pt-6 px-3 lg:p-6 w-full flex flex-col flex-wrap" />
-        <Calendar v-show="calendarStore.isCalendarVisible" class="hidden lg:block" />
+        <AppCalendar v-show="calendarStore.isCalendarVisible" class="hidden lg:block" />
 
         <ThemeModeButton class="absolute bottom-2 left-2" />
     </aside>
