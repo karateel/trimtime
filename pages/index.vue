@@ -5,13 +5,10 @@
 </template>
 
 <script setup lang="ts">
-const user = useSupabaseUser()
 
-// definePageMeta({
-//     middleware: [
-//         'auth',
-//     ]
-// });
+definePageMeta({
+    middleware: 'auth',
+});
 
 useHead({
     title: 'Home'

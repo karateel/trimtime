@@ -1,33 +1,40 @@
 <template>
-    <ul class="breadcrumbs">
-        <li v-for="(crumb, i) in crumbs" :key="i">
-            <nuxt-link :to="crumb.path">
-                {{ crumb.name }}
-            </nuxt-link>
-            <span v-if="i < crumbs.length - 1">></span>
+    <ol class="ml-3 flex items-center whitespace-nowrap min-w-0 gap-1">
+        <li :class="styles">
+            <ULink :to="'/'" class="title">
+                Home
+            </ULink>
         </li>
-    </ul>
+        <li :class="styles">
+            <UIcon name="i-heroicons-chevron-right-20-solid" />
+        </li>
+        <li v-for="(item, i) in crumbs" :key="i"
+            class="text-sm font-semibold text-tuna truncate dark:text-slate-300 capitalize">
+            <ULink :to="item.to" class="title">
+                {{ item.title }}
+            </ULink>
+        </li>
+    </ol>
 </template>
   
-<script lang="ts" setup>
+<script setup lang="ts">
+import { BreadcrumbsData } from '@/interface'
+const styles = 'flex items-center text-sm text-tuna dark:text-slate-300'
 
-interface Crumb {
-    path: string
-    name: string
-}
-
-const crumbs = computed<Crumb[]>(() => {
+const crumbs = computed<readonly BreadcrumbsData[]>(() => {
     const route = useRoute()
-
-    const crumbs = []
-    route.matched.forEach((item, i, { length }) => {
-        const crumb: Crumb = {}
-        crumb.path = item.path
-        crumb.name = item.meta.breadcrumbTitle
-
-        crumbs.push(crumb)
-    })
-
-    return crumbs
+    const pathArray = route.path.split('/')
+    pathArray.shift()
+    const breadcrumbs: BreadcrumbsData[] = pathArray.reduce((breadcrumbArray: BreadcrumbsData[], path, idx) => {
+        breadcrumbArray.push({
+            to: breadcrumbArray[idx - 1]
+                ? '/' + breadcrumbArray[idx - 1].path + '/' + path
+                : '/' + path,
+            title: path,
+            path: undefined
+        })
+        return breadcrumbArray
+    }, [])
+    return breadcrumbs
 })
 </script>
