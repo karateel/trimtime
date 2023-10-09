@@ -28,7 +28,6 @@
   "dependencies": {
     "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
     "@pinia/nuxt": "^0.4.11",
-    "@prisma/client": "5.3.1",
-    "v-calendar": "^3.0.3"
+    "@prisma/client": "5.3.1"
   }
 }
