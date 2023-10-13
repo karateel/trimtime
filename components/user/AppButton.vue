@@ -1,7 +1,7 @@
 <template>
     <UDropdown v-if="user" :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }">
-        <UAvatar icon="i-heroicons-photo" size="lg" />
+        <UAvatar :src="src" v-model:path="path" size="lg" />
         <template #account="{ item }">
             <div class="text-left">
                 <p>
@@ -26,6 +26,28 @@
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 const router = useRouter()
+const props = defineProps(['path', 'size'])
+const { path } = toRefs(props)
+const src = ref('')
+const avatar_path = ref('')
+
+const { data } = await client
+    .from('profiles')
+    .select('avatar_url')
+    .eq('id', user.value.id)
+    .single()
+
+if (data) {
+    avatar_path.value = data.avatar_url
+}
+
+downloadImage(src, avatar_path)
+
+watch(path, () => {
+    if (path.value) {
+        downloadImage(src, avatar_path)
+    }
+})
 
 const items = ref([
     [{
@@ -49,11 +71,4 @@ const items = ref([
         }
     }]
 ])
-
-const logout = async () => {
-    const { error } = await client.auth.signOut()
-    if (error) {
-        return alert('Something went wrong !')
-    }
-}
 </script>

@@ -9,7 +9,7 @@
 
             <div class="w-full flex items-center justify-end ml-auto sm:gap-x-3 sm:order-3">
                 <div class="flex flex-row items-center justify-end gap-2">
-                    <UserButton />
+                    <UserAppButton />
                 </div>
             </div>
         </nav>
