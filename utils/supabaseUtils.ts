@@ -32,7 +32,7 @@ export async function downloadImage(imgSrc: {value:string}, path:{ value:string}
     const client = useSupabaseClient()
     try {
         const { data, error } = await client.storage.from('avatars').download(path.value)
-        if (error) throw error
+        if (error) return
         imgSrc.value = URL.createObjectURL(data)
 
     } catch (error:any) {
