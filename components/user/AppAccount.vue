@@ -1,26 +1,20 @@
 <template>
-    <form class="form-widget" @submit.prevent="updateProfile">
-        <UserAppAvatar v-model:path="avatar_path" />
-        <div>
-            <label for="username">Name</label>
-            <input id="username" type="text" v-model="username" />
-        </div>
-        <div>
-            <input type="submit" class="button primary block" :value="loading ? 'Loading ...' : 'Update'"
-                :disabled="loading" />
-        </div>
-    </form>
+    <UForm @submit="updateProfile" :state="state" class="gap-8 grid">
+        <AlertsSuccessAlert :success-msg="changesSaved" />
+
+        <UserAppAvatar v-model:path="state.avatar_path" @update="updateProfile" />
+        <UFormGroup label="Username" name="username">
+            <UInput v-model="state.username" variant="outline" color="primary" type="text" />
+        </UFormGroup>
+
+        <UButton type="submit" :loading="state.loading" label="Save" />
+    </UForm>
 </template>
 
 <script setup>
 const supabase = useSupabaseClient()
-
-const loading = ref(true)
-const username = ref('')
-const avatar_path = ref('')
-
-loading.value = true
 const user = useSupabaseUser()
+const changesSaved = ref('')
 
 let { data } = await supabase
     .from('profiles')
@@ -28,34 +22,54 @@ let { data } = await supabase
     .eq('id', user.value.id)
     .single()
 
-if (data) {
-    username.value = data.username
-    avatar_path.value = data.avatar_url
-}
+const state = ref({
+    id: user.value.id,
+    username: data.username,
+    avatar_path: data.avatar_url,
+    loading: false
+})
 
-loading.value = false
-
-async function updateProfile() {
+async function updateProfile(event) {
+    const data = event.data;
     try {
-        loading.value = true
-        const user = useSupabaseUser()
-
-        const updates = {
-            id: user.value.id,
-            username: username.value,
-            avatar_url: avatar_path.value,
+        data.loading = true;
+        const initialUpdates = {
+            id: data.id,
+            avatar_url: null,
             updated_at: new Date(),
+        };
+
+        const { error: initialError } = await supabase.from('profiles').upsert(initialUpdates, {
+            returning: 'minimal',
+        });
+
+        if (initialError) {
+            throw initialError;
         }
 
-        let { error } = await supabase.from('profiles').upsert(updates, {
-            returning: 'minimal',
-        })
+        const newUpdates = {
+            id: data.id,
+            username: data.username,
+            avatar_url: data.avatar_path,
+            updated_at: new Date(),
+        };
 
-        if (error) throw error
+        const { error: finalError } = await supabase.from('profiles').upsert(newUpdates, {
+            returning: 'minimal',
+        });
+
+        if (finalError) {
+            throw finalError;
+        }
     } catch (error) {
-        alert(error.message)
+        console.error('Error in updateProfile:', error);
     } finally {
-        loading.value = false
+        data.loading = false;
+        changesSaved.value = 'Changes saved';
+        setTimeout(() => {
+            changesSaved.value = ''
+        }, 3000)
     }
 }
+
 </script>

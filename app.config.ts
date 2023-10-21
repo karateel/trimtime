@@ -19,10 +19,10 @@ export default defineAppConfig({
       }
     },
     input: {
-      base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 bg-neutral-200',
+      base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 bg-neutral-200 file:rounded file:border-0 file:text-sm file:bg-primary-500 hover:file:bg-primary-600',
       placeholder: 'placeholder-tuna-100 dark:placeholder:neutral-200',
       variant: {
-        outline: 'shadow-lg bg-neutral-200 transition duration-500 ease-in-out text-tuna ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-{color}-500 dark:ring-transparent dark:focus:ring-{color}-400 '
+        outline: 'shadow-lg bg-neutral-200 dark:bg-tundora transition duration-500 ease-in-out text-tuna ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-{color}-500 dark:ring-transparent dark:focus:ring-{color}-400'
       }
     },
     dropdown: {
@@ -46,6 +46,7 @@ export default defineAppConfig({
       background: 'bg-white dark:bg-brown'
     },
     slideover: {
+      wrapper: 'fixed inset-0 flex z-50 w-1/2',
       background: 'bg-mercury dark:bg-tundora',
       overlay: {
         base: 'bg-mercury/75 dark:bg-tundora/75'

@@ -3,7 +3,7 @@
     constrained: 'w-full max-w-full px-0 sm:px-0 lg:px-0'
   }">
     <NavAppHeader />
-    <UContainer id="main" as="main" class="w-full pt-2">
+    <UContainer id="main" as="main" class="w-full pt-2 max-w-full overflow-y-auto">
       <slot />
     </UContainer>
   </UContainer>

@@ -1,9 +1,10 @@
 <template>
-    <UserAppAccount />
+    <UContainer>
+        Profile page
+    </UContainer>
 </template>
 
 <script setup lang="ts">
-const user = useSupabaseUser()
 
 useHead({
     title: 'Profile'
