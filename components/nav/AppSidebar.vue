@@ -5,7 +5,7 @@
     </USlideover>
 
     <aside id="sidebar" class="hidden w-36 lg:w-64 lg:block dark:bg-tundora bg-mercury">
-        <CalAppCalendar />
+        <!-- <CalAppDatePicker /> -->
         <UVerticalNavigation :links="links" class="pt-6 px-3 lg:p-6 w-full flex flex-col flex-wrap" />
         <ThemeModeButton class="absolute bottom-2 left-2" />
     </aside>
