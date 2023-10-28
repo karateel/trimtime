@@ -1,13 +1,13 @@
 export const useCalendarStore = defineStore('calendar',{
   state: () => ({
-    selectedDate: new Date(),
+    dateSelected: new Date(),
   }),
   getters: {
-    getSelectedDate: (state) => ref(state.selectedDate),
+    getSelectedDate: (state) => ref(state.dateSelected),
   },
   actions: {
     setSelectedDate(date: Date) {
-      this.selectedDate = date;
+      this.dateSelected = date;
     },
   },
 });
