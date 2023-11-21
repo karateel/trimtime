@@ -51,6 +51,14 @@ export default defineAppConfig({
       overlay: {
         base: 'bg-mercury/75 dark:bg-tundora/75'
       }
+    },
+    modal: {
+
+    },
+    card: {
+      background: 'bg-mercury dark:bg-tundora',
+      ring: 'ring-1 ring-tuna dark:ring-brown',
+      divide: 'divide-y divide-tuna dark:divide-brown'
     }
   },
 })  

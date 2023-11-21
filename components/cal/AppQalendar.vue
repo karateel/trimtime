@@ -1,66 +1,38 @@
 <template>
     <UContainer class="w-full max-w-full">
-        {{ events }}
-        <Qalendar :events="events" @interval-was-clicked="dateClick" @event-was-dragged="eventDragged" :config="config"
-            class="max-h-[calc(100vh-85px)]">
+        <Qalendar :events="events" :config="config" @event-was-dragged="logEvents">
+            <template #eventDialog="props">
+                <div v-if="props.eventDialogData && props.eventDialogData.title">
+                    <UCard>
+                        <template #header>
+                        </template>
+
+
+                        <template #footer>
+                        </template>
+                    </UCard>
+                    <UButton @click="props.closeEventDialog">Finished!</UButton>
+                </div>
+            </template>
         </Qalendar>
     </UContainer>
 </template>
   
-<script async setup lang="ts">
+<script setup lang="ts">
 import { Qalendar } from 'qalendar';
 import { v4 as uuid } from 'uuid';
 
-defineComponent({ Qalendar });
-
-function dateClick(e: any) {
-    console.log('e', e);
+interface Event {
+    title: string;
+    with: string;
+    time: { start: string; end: string };
+    color: string;
+    isEditable: boolean;
+    id: string;
+    description?: string;
 }
 
-function eventDragged(e: any) {
-    console.log(e.time)
-    console.log(e.id)
-
-    const updatedEvents = events.value.map((event) => {
-        if (event.id = e.id) {
-            return { ...event, time: e.time }
-        }
-        return event
-    })
-
-    events.value = updatedEvents
-    localStorage.setItem('events', JSON.stringify(updatedEvents));
-}
-
-function updateEvents(newEvents: any[]) {
-    events.value = newEvents;
-}
-
-const events = ref([
-    {
-        title: 'Advanced algebra',
-        with: 'Chandler Bing',
-        time: { start: '2023-10-28 12:05', end: '2023-10-28 13:35' },
-        color: 'yellow',
-        isEditable: true,
-        id: uuid(),
-        description: 'Lorem ipsum dolor sit amet voluptatem!',
-    },
-    {
-        title: 'Ralph on holiday',
-        with: 'Rachel Greene',
-        time: { start: '2023-10-28 16:00', end: '2023-10-28 18:25' },
-        color: 'green',
-        isEditable: true,
-        id: uuid(),
-    },
-]);
-
-watch(events, (newEvents) => {
-    localStorage.setItem('events', JSON.stringify(newEvents));
-});
-
-localStorage.setItem('events', JSON.stringify(events.value));
+const events = ref<Event[]>([]);
 
 const config = ref({
     defaultMode: 'day',
@@ -71,12 +43,36 @@ const config = ref({
         intervalStyles: { color: 'white' },
     },
     dayBoundaries: {
-        start: 6,
-        end: 18,
+        start: 10,
+        end: 20,
     },
     showCurrentTime: true,
+    eventDialog: {
+        isCustom: true
+    }
 });
 
+const getEventsFromLocalStorage = (): Event[] => {
+    const storedEvents = localStorage.getItem('dayEvents');
+    return storedEvents ? JSON.parse(storedEvents) : [];
+};
+
+events.value = getEventsFromLocalStorage();
+
+watch(events, (newEvents) => {
+    localStorage.setItem('dayEvents', JSON.stringify(newEvents));
+});
+
+
+const logEvents = (e: { id: string; time: { start: string; end: string } }) => {
+    const draggedEvent = events.value.find((event) => event.id === e.id);
+
+    if (draggedEvent) {
+        draggedEvent.time = e.time;
+
+        localStorage.setItem('dayEvents', JSON.stringify(events.value));
+    }
+};
 </script>
 
 <style>
