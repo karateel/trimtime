@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <DatePicker firstDayOfWeek="monday" @updated="handleUpdate" />
 </template>
 
@@ -16,4 +16,4 @@ const handleUpdate = (payload: any) => {
 }
 </script>
 
-<style scoped></style> -->
+<style scoped></style>
