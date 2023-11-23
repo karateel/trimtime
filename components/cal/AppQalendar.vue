@@ -1,17 +1,18 @@
 <template>
     <UContainer class="w-full max-w-full">
-        <Qalendar :events="events" :config="config" @event-was-dragged="logEvents">
+        <CalAppBookingEvent />
+
+        <Qalendar :events="events" :config="config" @interval-was-clicked="openModal.toggleBooking()"
+            @event-was-dragged="logEvents">
             <template #eventDialog="props">
                 <div v-if="props.eventDialogData && props.eventDialogData.title">
                     <UCard>
                         <template #header>
                         </template>
-
-
                         <template #footer>
                         </template>
                     </UCard>
-                    <UButton @click="props.closeEventDialog">Finished!</UButton>
+                    <UButton @click="props.closeEventDialog">Finish!</UButton>
                 </div>
             </template>
         </Qalendar>
@@ -21,18 +22,9 @@
 <script setup lang="ts">
 import { Qalendar } from 'qalendar';
 import { v4 as uuid } from 'uuid';
+import type { ScheduleEvent } from '@/interface';
 
-interface Event {
-    title: string;
-    with: string;
-    time: { start: string; end: string };
-    color: string;
-    isEditable: boolean;
-    id: string;
-    description?: string;
-}
-
-const events = ref<Event[]>([]);
+const events = ref<ScheduleEvent[]>([]);
 
 const config = ref({
     defaultMode: 'day',
@@ -52,7 +44,9 @@ const config = ref({
     }
 });
 
-const getEventsFromLocalStorage = (): Event[] => {
+const openModal = useBookingStore();
+
+const getEventsFromLocalStorage = (): ScheduleEvent[] => {
     const storedEvents = localStorage.getItem('dayEvents');
     return storedEvents ? JSON.parse(storedEvents) : [];
 };
@@ -77,4 +71,4 @@ const logEvents = (e: { id: string; time: { start: string; end: string } }) => {
 
 <style>
 @import "/node_modules/qalendar/dist/style.css";
-</style>
+</style>~/composables/bookingStore

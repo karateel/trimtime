@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  experimental:{
+    componentIslands: true
+  },
   modules: [
     '@nuxtjs/supabase',
     '@nuxt/ui',
@@ -19,7 +22,6 @@ export default defineNuxtConfig({
   css: ['~/assets/main.css'],
   imports: {
     dirs: [
-      '~/store/**', 
       '~/interface/'
     ],
     global: true

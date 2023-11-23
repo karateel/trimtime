@@ -10,7 +10,5 @@
 </template>
   
 <script setup lang="ts">
-import { useMenuStore } from '~/store/navbarStore';
 const menuStore = useMenuStore();
 </script>
-  

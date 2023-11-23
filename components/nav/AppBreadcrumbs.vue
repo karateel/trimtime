@@ -18,7 +18,7 @@
 </template>
   
 <script setup lang="ts">
-import { BreadcrumbsData } from '@/interface'
+import type { BreadcrumbsData } from '@/interface'
 const styles = 'flex items-center text-sm text-tuna dark:text-slate-300'
 
 const crumbs = computed<readonly BreadcrumbsData[]>(() => {

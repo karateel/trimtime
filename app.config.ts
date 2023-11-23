@@ -8,7 +8,7 @@ export default defineAppConfig({
       inactive: "text-tuna dark:text-slate-300 hover:text-tuna dark:hover:text-slate-300 hover:before:bg-primary-500/80 dark:hover:before:bg-primary-500/80 drop-shadow-xl",
       icon: {
         base: 'flex-shrink-0 w-6 h-6',
-        active: "text-tuna dark:text-primary-500",
+        active: "text-primary dark:text-primary-500",
         inactive: "text-tuna dark:text-slate-300 group-hover:text-tuna dark:group-hover:text-slate-300"
       },
     },
@@ -53,7 +53,10 @@ export default defineAppConfig({
       }
     },
     modal: {
-
+      overlay: {
+        background: 'bg-mercury/75 dark:bg-tundora/75'
+      },
+      background: "bg-mercury dark:bg-tundora",
     },
     card: {
       background: 'bg-mercury dark:bg-tundora',
