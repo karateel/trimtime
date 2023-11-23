@@ -16,4 +16,4 @@ const handleUpdate = (payload: any) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped></style>~/composables/calendarStore

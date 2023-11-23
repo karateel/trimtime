@@ -1,6 +1,6 @@
 <template>
-    <UButton :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" color="primary" variant="ghost"
-        aria-label="Theme" @click="isDark = !isDark" />
+    <UButton class="absolute bottom-16 left-2" :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+        color="primary" variant="ghost" aria-label="Theme" @click="isDark = !isDark" />
 </template>
 
 <script setup lang="ts">

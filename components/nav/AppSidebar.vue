@@ -1,18 +1,17 @@
 <template>
     <USlideover v-model="menuStore.flag" side="left">
         <UVerticalNavigation :links="links" class="pt-6 px-3 lg:p-6 w-full flex flex-col flex-wrap" />
-        <ThemeModeButton class="absolute bottom-2 left-2" />
+        <ThemeModeButton />
     </USlideover>
 
-    <aside id="sidebar" class="hidden w-36 lg:w-64 lg:block dark:bg-tundora bg-mercury">
-        <CalAppDatePicker />
+    <aside id="sidebar" class="hidden w-36 lg:w-64 lg:block dark:bg-tundora bg-mercury h-screen">
+        <!-- <CalAppDatePicker /> -->
         <UVerticalNavigation :links="links" class="pt-6 px-3 lg:p-6 w-full flex flex-col flex-wrap" />
-        <ThemeModeButton class="absolute bottom-2 left-2" />
+        <ThemeModeButton />
     </aside>
 </template>
   
 <script setup lang="ts">
-import { useMenuStore } from '~/store/navbarStore';
 const menuStore = useMenuStore();
 const closeSidebar = () => {
     menuStore.flag = false
@@ -37,4 +36,4 @@ const links = [
 #sidebar {
     grid-area: sidebar;
 }
-</style>
+</style>~/composables/navbarStore
