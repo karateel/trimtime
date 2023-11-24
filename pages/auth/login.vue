@@ -2,7 +2,7 @@
   <UContainer class="grid gap-8 text-center justify-center">
     <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] font-semibold text-xl text-tuna dark:text-slate-300">
       Sign in</h1>
-    <UForm @submit.prevent="login" :state="state"
+    <UForm @submit="login" :state="state"
       class="grid gap-8 text-center justify-center rounded-md p-4 border border-primary-500">
       <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <UContainer class="grid gap-4">
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserCredentials } from '~/interface';
+import type { UserCredentials } from '~/interface';
 
 definePageMeta({
   layout: "auth"
