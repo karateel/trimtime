@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { RegistrationData } from '~/interface';
+import type { RegistrationData } from '~/interface';
 
 definePageMeta({
   layout: "auth"
