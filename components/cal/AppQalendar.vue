@@ -1,4 +1,4 @@
-<template>
+ща<template>
     <CalAppBookingEvent>
         <UForm :state="state" class="gap-8 grid p-4" @submit="saveBooking">
             <UFormGroup label="Title" name="title">
@@ -112,7 +112,7 @@ const logEvents = (e: { id: string; time: { start: string; end: string } }) => {
 </script>
 
 <style scoped lang="postcss">
-@import "../../node_modules/qalendar/dist/style.css";
+@import "node_modules/qalendar/dist/style.css";
 
 
 .calendar-root-wrapper {
