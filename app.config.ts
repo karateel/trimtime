@@ -59,9 +59,8 @@ export default defineAppConfig({
       background: "bg-mercury dark:bg-tundora",
     },
     card: {
-      background: 'bg-mercury dark:bg-tundora',
-      ring: 'ring-1 ring-tuna dark:ring-brown',
-      divide: 'divide-y divide-tuna dark:divide-brown'
+      background: 'dark:bg-brown bg-white',
+      divide: 'divide-y divide-tundora dark:divide-mercury'
     }
   },
 })  
