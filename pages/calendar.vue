@@ -1,13 +1,12 @@
 <template>
-    <div>
-        Calendar
-    </div>
+    <CalAppQalendar />
 </template>
 
 <script setup lang="ts">
+useHead({
+    title: 'Calendar'
+})
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

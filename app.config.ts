@@ -61,6 +61,9 @@ export default defineAppConfig({
     card: {
       background: 'dark:bg-brown bg-white',
       divide: 'divide-y divide-tundora dark:divide-mercury'
+    },
+    breadcrumbs: {
+      li: "flex items-center gap-x-1.5 text-tuna dark:text-slate-300 text-sm capitalize",
     }
   },
 })  

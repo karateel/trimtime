@@ -1,36 +1,34 @@
 <template>
-    <UContainer class="w-full max-w-full">
-        <CalAppBookingEvent>
-            <UForm :state="state" class="gap-8 grid p-4" @submit="saveBooking">
-                <UFormGroup label="Title" name="title">
-                    <UInput v-model="state.title" variant="outline" color="primary" />
-                </UFormGroup>
-                <UFormGroup label="Name" name="with">
-                    <UInput v-model="state.with" variant="outline" color="primary" />
-                </UFormGroup>
-                <UFormGroup label="Comment" name="comment">
-                    <UInput v-model="state.description" variant="outline" color="primary" />
-                </UFormGroup>
-                <UButton type="submit" class="justify-self-end" @click="openModal.toggleBooking()">
-                    Save
-                </UButton>
-            </UForm>
-        </CalAppBookingEvent>
+    <CalAppBookingEvent>
+        <UForm :state="state" class="gap-8 grid p-4" @submit="saveBooking">
+            <UFormGroup label="Title" name="title">
+                <UInput v-model="state.title" variant="outline" color="primary" />
+            </UFormGroup>
+            <UFormGroup label="Name" name="with">
+                <UInput v-model="state.with" variant="outline" color="primary" />
+            </UFormGroup>
+            <UFormGroup label="Comment" name="comment">
+                <UInput v-model="state.description" variant="outline" color="primary" />
+            </UFormGroup>
+            <UButton type="submit" class="justify-self-end" @click="openModal.toggleBooking()">
+                Save
+            </UButton>
+        </UForm>
+    </CalAppBookingEvent>
 
-        <Qalendar :events="events" :config="config" @interval-was-clicked="getInterval" @event-was-dragged="logEvents">
-            <template #eventDialog="props">
-                <div v-if="props.eventDialogData && props.eventDialogData.title">
-                    <UCard>
-                        <template #header>
-                        </template>
-                        <template #footer>
-                        </template>
-                    </UCard>
-                    <UButton @click="props.closeEventDialog">Finish!</UButton>
-                </div>
-            </template>
-        </Qalendar>
-    </UContainer>
+    <Qalendar :events="events" :config="config" @interval-was-clicked="getInterval" @event-was-dragged="logEvents">
+        <template #eventDialog="props">
+            <div v-if="props.eventDialogData && props.eventDialogData.title">
+                <UCard>
+                    <template #header>
+                    </template>
+                    <template #footer>
+                    </template>
+                </UCard>
+                <UButton @click="props.closeEventDialog">Finish!</UButton>
+            </div>
+        </template>
+    </Qalendar>
 </template>
   
 <script setup lang="ts">
@@ -113,6 +111,120 @@ const logEvents = (e: { id: string; time: { start: string; end: string } }) => {
 };
 </script>
 
-<style>
-@import "/node_modules/qalendar/dist/style.css";
+<style scoped lang="postcss">
+@import "../../node_modules/qalendar/dist/style.css";
+
+
+.calendar-root-wrapper {
+    @apply bg-mercury dark:bg-tundora
+}
+
+.calendar-header__period-name {
+    color: #000;
+}
+
+.calendar-header__mode-picker {
+    color: #fff !important;
+    background-color: #fff !important;
+    text-emphasis-color: #000 !important;
+    border: 1px solid #000 !important;
+}
+
+.calendar-header__mode-value {
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.calendar-header__mode-options {
+    color: #fff !important;
+    background-color: #fff !important;
+}
+
+.calendar-header__mode-option.is-month-mode {
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.calendar-header__mode-option.is-week-mode {
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.calendar-header__mode-option.is-day-mode {
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.calendar-header__chevron-arrows {
+    color: #000 !important;
+}
+
+.calendar-header {
+    background: #fff;
+    color: #fff;
+}
+
+.week-timeline__day-name {
+    color: #000 !important;
+}
+
+.week-timeline__date {
+    color: #000 !important;
+}
+
+.day-timeline__hour {
+    color: #000 !important;
+}
+
+.date-picker__value-display {
+    color: #000 !important;
+    background-color: #fff !important;
+    text-emphasis-color: #000 !important;
+    border: 1px solid #000 !important;
+}
+
+.date-picker__value-display-text {
+    color: #000 !important;
+    border-color: #000 !important;
+}
+
+.date-picker__week-picker {
+    background-color: #fff !important;
+}
+
+.date-picker__week-picker-navigation {
+    color: #000 !important;
+}
+
+.date-pickerr__day-names.week {
+    color: #000 !important;
+}
+
+.date-picker__day-names.week {
+    color: #000 !important;
+}
+
+.date-picker__week-picker.is-in-qalendar {
+    color: #000 !important;
+}
+
+.calendar-month__day-name {
+    color: #000 !important;
+}
+
+.calendar-month__day-date {
+    color: #000 !important;
+}
+
+.calendar-month__weekday-more {
+    color: #000 !important;
+}
+
+.calendar-month__event-time {
+    color: #000 !important;
+}
+
+.calendar-month__event-title {
+    color: #000 !important;
+}
 </style>

@@ -41,6 +41,7 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     exposeConfig: true,
+    injectPosition: 'last'
   },
   supabase: {
     url: process.env.SUPABASE_URL,
