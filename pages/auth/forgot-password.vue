@@ -2,7 +2,7 @@
   <UContainer class="grid gap-8 justify-center text-center">
     <h1 class="font-[inherit] m-0 leading-[1.4] tracking-[-0.125px] font-semibold text-xl text-tuna dark:text-slate-300">
       Forgot password</h1>
-    <UForm :state="state" @submit.prevent="resetPassword"
+    <UForm :state="state" @submit="resetPassword"
       class="grid gap-6 text-center justify-center rounded-md p-4 border border-primary-500">
       <AlertsErrorAlert :error-msg="authError" @clearError="clearError" />
       <AlertsSuccessAlert :success-msg="authSuccess" @clearSuccess="clearSuccess" />
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ForgotPasswordData } from '~/interface';
+import type { ForgotPasswordData } from '~/interface';
 
 definePageMeta({
   layout: "auth"
