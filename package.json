@@ -29,7 +29,7 @@
     "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "5.3.1",
-    "qalendar": "^3.5.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vue-cal": "^4.8.1"
   }
 }

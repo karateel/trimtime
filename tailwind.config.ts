@@ -66,7 +66,6 @@ export default <Partial<Config>>{
             950: '#0B0B0B'
           },
       },
-
     }
   },
   plugins: [

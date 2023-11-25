@@ -1,19 +1,12 @@
 <template>
-    <DatePicker firstDayOfWeek="monday" @updated="handleUpdate" />
+    <vue-cal class="vuecal--date-picker max-h-[275px]" xsmall hide-view-selector :time="false" :transitions="false"
+        active-view="month" :disable-views="['years', 'year', 'week', 'day']">
+    </vue-cal>
 </template>
 
 <script setup lang="ts">
-import { DatePicker } from 'qalendar';
-import { useCalendarStore } from '@/store/calendarStore'
-defineComponent({ DatePicker })
+import VueCal from 'vue-cal'
 
-const calendarStore = useCalendarStore()
-
-
-const handleUpdate = (payload: any) => {
-    const { year, month, date } = payload;
-    calendarStore.setSelectedDate(payload)
-}
 </script>
 
-<style scoped></style>~/composables/calendarStore
+<style></style>
