@@ -64,6 +64,18 @@ export default defineAppConfig({
     },
     breadcrumbs: {
       li: "flex items-center gap-x-1.5 text-tuna dark:text-slate-300 text-sm capitalize",
+    },
+    tabs: {
+      list: {
+        background: "bg-mercury dark:bg-tundora",
+        marker: {
+          background: "bg-mercury dark:bg-tundora",
+        },
+        tab: {
+          active: "text-primary-500 dark:text-primary-500",
+          inactive: "text-tuna dark:text-slate-300",
+        }
+      },
     }
   },
 })  

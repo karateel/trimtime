@@ -7,3 +7,9 @@
         @apply dark:bg-brown bg-white lg:overflow-hidden
     }
 }
+
+@layer components {
+    .text-shadow {
+        text-shadow: 5px 7px 5px rgba(0, 0, 0, 0.40);
+    }
+}
