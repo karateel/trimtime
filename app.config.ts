@@ -69,13 +69,16 @@ export default defineAppConfig({
       list: {
         background: "bg-mercury dark:bg-tundora",
         marker: {
-          background: "bg-mercury dark:bg-tundora",
+          background: "bg-white dark:bg-brown",
         },
         tab: {
           active: "text-primary-500 dark:text-primary-500",
           inactive: "text-tuna dark:text-slate-300",
         }
       },
+    },
+    table: {
+      
     }
   },
 })  

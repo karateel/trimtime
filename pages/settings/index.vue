@@ -4,29 +4,40 @@
             <h4 class="text-tuna dark:text-slate-300 text-shadow">Account Settings</h4>
         </div>
         <UTabs :items="items">
+            <template #myprofile>
+                <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia, assumenda labore dolorum esse nemo</h1>
+            </template>
             <template #account>
                 <UserAppAccount />
             </template>
             <template #team>
-                <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia, assumenda labore dolorum esse nemo
-                    tempora quod aliquid totam eos excepturi magnam officiis odio inventore dolorem fugit quisquam nisi cum
-                    mollitia.</h1>
+                <UserAppTeam />
             </template>
         </UTabs>
     </UContainer>
 </template>
 
 <script setup lang="ts">
+useHead({
+    title: 'Settings'
+})
 const user = useSupabaseUser()
 const formattedDate = ref('')
 
-const items = [{
-    slot: 'account',
-    label: 'Account'
-}, {
-    slot: 'team',
-    label: 'Team'
-}]
+const items = [
+    {
+        slot: 'myprofile',
+        label: 'My Profile'
+    },
+    {
+        slot: 'account',
+        label: 'Account'
+    },
+    {
+        slot: 'team',
+        label: 'Team',
+    }]
+
 </script>
 
 <style scoped></style>

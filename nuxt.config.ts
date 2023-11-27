@@ -26,6 +26,9 @@ export default defineNuxtConfig({
     ],
     global: true
   },
+  nitro: {
+    compressPublicAssets: true,
+  },
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
   },
