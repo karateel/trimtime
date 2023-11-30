@@ -78,7 +78,15 @@ export default defineAppConfig({
       },
     },
     table: {
-      
+      divide: 'divide-y divide-tundora dark:divide-mercury',
+      tbody: '',
+      th: {
+        color: 'text-primary dark:text-primary-500',
+      }
+    },
+    tooltip: {
+      background: 'bg-mercury dark:bg-tundora',
+      color: 'text-tuna dark:text-slate-300'
     }
   },
 })  

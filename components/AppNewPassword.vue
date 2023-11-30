@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { NewPasswordData } from '~/interface';
+import type { NewPasswordData } from '~/interface';
 
 definePageMeta({
   layout: "auth"

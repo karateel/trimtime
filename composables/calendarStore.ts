@@ -1,13 +1,11 @@
-export const useCalendarStore = defineStore('calendar',{
+export const useCalendarStore = defineStore('calendar', {
   state: () => ({
-    dateSelected: new Date(),
+    selectedDate: null as Date | null,
   }),
-  getters: {
-    getSelectedDate: (state) => ref(state.dateSelected),
-  },
+
   actions: {
     setSelectedDate(date: Date) {
-      this.dateSelected = date;
+      this.selectedDate = date;
     },
   },
 });
