@@ -21,14 +21,14 @@
     "eslint": "^8.49.0",
     "nuxt": "3.8.2",
     "prettier": "^3.0.3",
-    "prisma": "5.3.1",
+    "prisma": "latest",
     "sass": "^1.68.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@nuxt/ui": "2.11.0",
+    "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
     "@pinia/nuxt": "^0.4.11",
-    "@prisma/client": "5.3.1",
+    "@prisma/client": "latest",
     "uuid": "^9.0.1",
     "vue-cal": "^4.8.1"
   }

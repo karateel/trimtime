@@ -7,22 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Barber {
-  id        String  @id @default(uuid())
+model Client {
+  id         String   @id @default(uuid())
   first_name String
   last_name  String
-  email     String  @unique
-  phone     String?
-  address   String?
-  clientId  String?
+  email      String   @unique
+  phone      String?
+  address    String?
+  companyId  String?
+  company    Company? @relation(fields: [companyId], references: [id])
 }
 
-model Client {
-  id        String  @id @default(uuid())
+model Barber {
+  id         String  @id @default(uuid())
   first_name String
   last_name  String
-  email     String  @unique
-  phone     String?
-  address   String?
-  barberId  String  @unique
+  email      String  @unique
+  phone      String?
+  address    String?
+  companyId  String
+  company    Company @relation(fields: [companyId], references: [id])
+  avatar_url String
+}
+
+model Company {
+  id       String   @id @default(uuid())
+  name     String
+  clientId String
+  barbers  Barber[]
+  clients  Client[]
 }
