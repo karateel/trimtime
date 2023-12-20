@@ -4,7 +4,7 @@
 
         <UserAppAvatar v-model:path="state.avatar_path" @update="updateProfile" />
         <UFormGroup label="Username" name="username">
-            <UInput v-model="state.username" variant="outline" color="primary" type="text" />
+            <UInput v-model="state.email" variant="outline" color="primary" type="text" />
         </UFormGroup>
 
         <UButton type="submit" :loading="state.loading" label="Save" />
@@ -18,13 +18,13 @@ const changesSaved = ref('')
 
 let { data } = await supabase
     .from('profiles')
-    .select(`username, avatar_url`)
+    .select(`email, avatar_url`)
     .eq('id', user.value.id)
     .single()
 
 const state = ref({
     id: user.value.id,
-    username: data.username,
+    email: data.email,
     avatar_path: data.avatar_url,
     loading: false
 })
@@ -72,4 +72,7 @@ async function updateProfile(event) {
     }
 }
 
+onMounted(() => {
+  console.log(data)
+})
 </script>
