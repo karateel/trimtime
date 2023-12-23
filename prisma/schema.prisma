@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Owner {
+  id String @id
+  first_name String
+  last_name String
+  email String
+  companies  Company[]
+}
+
 model Client {
   id         String   @id @default(uuid())
   first_name String
@@ -36,4 +44,12 @@ model Company {
   clientId String
   barbers  Barber[]
   clients  Client[]
+  owner    String
+  ownerUser   Owner     @relation(fields: [owner], references: [id])
+}
+
+model profile {
+  id String @id
+  email String
+  avatar_url String
 }

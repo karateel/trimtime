@@ -17,7 +17,7 @@ const user = useSupabaseUser()
 const changesSaved = ref('')
 
 let { data } = await supabase
-    .from('profiles')
+    .from('profile')
     .select(`email, avatar_url`)
     .eq('id', user.value.id)
     .single()
@@ -39,7 +39,7 @@ async function updateProfile(event) {
             updated_at: new Date(),
         };
 
-        const { error: initialError } = await supabase.from('profiles').upsert(initialUpdates, {
+        const { error: initialError } = await supabase.from('profile').upsert(initialUpdates, {
             returning: 'minimal',
         });
 
@@ -54,7 +54,7 @@ async function updateProfile(event) {
             updated_at: new Date(),
         };
 
-        const { error: finalError } = await supabase.from('profiles').upsert(newUpdates, {
+        const { error: finalError } = await supabase.from('profile').upsert(newUpdates, {
             returning: 'minimal',
         });
 
