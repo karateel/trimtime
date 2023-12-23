@@ -5,7 +5,7 @@
         </div>
         <UTabs :items="items">
             <template #myprofile>
-                <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia, assumenda labore dolorum esse nemo</h1>
+                <SettingsMyProfile :state="state"/>
             </template>
             <template #account>
                 <UserAppAccount />
@@ -23,6 +23,32 @@ useHead({
 })
 const user = useSupabaseUser()
 const formattedDate = ref('')
+
+const state = ref({
+  email: '',
+  first_name: '',
+  last_name: '',
+  loading: false
+})
+
+const getOwner = async () => {
+  try {
+    const response = await fetch('/api/get-owner', {
+      method: 'GET',
+    })
+    if (response.ok) {
+      const data = await response.json();
+      state.value = data
+    } else {
+      console.error('Error creating user:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+onMounted(() => {
+  getOwner()
+})
 
 const items = [
     {
