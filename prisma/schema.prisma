@@ -35,7 +35,9 @@ model Barber {
   address    String?
   companyId  String
   company    Company @relation(fields: [companyId], references: [id])
-  avatar_url String
+  avatar_url String?
+  instagram  String
+  role       String
 }
 
 model Company {
@@ -46,10 +48,4 @@ model Company {
   clients  Client[]
   owner    String
   ownerUser   Owner     @relation(fields: [owner], references: [id])
-}
-
-model profile {
-  id String @id
-  email String
-  avatar_url String
 }

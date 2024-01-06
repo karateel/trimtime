@@ -4,7 +4,7 @@
         <template #empty-state>
             <div class="flex flex-col items-center justify-center py-6 gap-3">
                 <span class="italic text-sm">No one here!</span>
-                <UButton label="Add people" />
+                <UButton label="Add people" @click="isOpen = true"/>
             </div>
         </template>
         <template #actions-data="{ row }">
@@ -13,9 +13,12 @@
             </UDropdown>
         </template>
     </UTable>
+  <SettingsTeamModal :isOpen="isOpen"/>
 </template>
 
 <script setup lang="ts">
+const isOpen = ref(false);
+
 const columns = [{
     key: 'name',
     label: 'Name'
@@ -27,22 +30,7 @@ const columns = [{
     label: 'Role'
 }]
 
-const people = [{
-    id: 1,
-    name: 'Kirill',
-    instagram: 'kirillisokay',
-    role: 'Admin, web-dev'
-}, {
-    id: 2,
-    name: 'Vlad',
-    instagram: 'xavladyk',
-    role: 'Starshij barber'
-}, {
-    id: 3,
-    name: 'Max',
-    instagram: 'maxsi.iim',
-    role: 'Strashij barber'
-}]
+const people = []
 
 const items = (row) => [
     [{

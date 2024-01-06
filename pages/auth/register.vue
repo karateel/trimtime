@@ -79,4 +79,5 @@ const signUp = async () => {
     authError.value = 'Failed to fetch'
   }
 }
+
 </script>

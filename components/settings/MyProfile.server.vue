@@ -12,13 +12,22 @@ defineProps<{state: Owner}>()
 <template>
   <UForm :state="state" class="space-y-4">
     <UFormGroup>
-      <UInput label="Email" v-model="state.email" variant="outline" color="primary" type="email"/>
+      <UInput label="Email"
+              :loading="state.loading"
+              placeholder="Loading..."
+              v-model="state.email" variant="outline" color="primary" type="email"/>
     </UFormGroup>
     <UFormGroup>
-      <UInput label="Name" v-model="state.first_name" variant="outline" color="primary" type="text"/>
+      <UInput label="Name"
+              :loading="state.loading"
+              placeholder="Loading..."
+              v-model="state.first_name" variant="outline" color="primary" type="text"/>
     </UFormGroup>
     <UFormGroup>
-      <UInput label="Lastname" v-model="state.last_name" variant="outline" color="primary" type="text"/>
+      <UInput label="Lastname"
+              :loading="state.loading"
+              placeholder="Loading..."
+              v-model="state.last_name" variant="outline" color="primary" type="text"/>
     </UFormGroup>
 
   </UForm>
