@@ -11,7 +11,7 @@
                 <UserAppAccount />
             </template>
             <template #team>
-                <UserAppTeam />
+                <SettingsAppTeam />
             </template>
         </UTabs>
     </UContainer>
@@ -28,7 +28,7 @@ const state = ref({
   email: '',
   first_name: '',
   last_name: '',
-  loading: false
+  loading: true
 })
 
 const getOwner = async () => {
@@ -39,6 +39,7 @@ const getOwner = async () => {
     if (response.ok) {
       const data = await response.json();
       state.value = data
+      state.value.loading = false
     } else {
       console.error('Error creating user:', response.statusText);
     }
