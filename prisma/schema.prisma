@@ -43,7 +43,6 @@ model Barber {
 model Company {
   id       String   @id @default(uuid())
   name     String
-  clientId String
   barbers  Barber[]
   clients  Client[]
   owner    String
