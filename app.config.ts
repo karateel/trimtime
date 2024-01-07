@@ -14,8 +14,9 @@ export default defineAppConfig({
     },
     button: {
       variant: {
-        solid: 'shadow-sm text-tuna dark:text-neutral-50 bg-{color}-500 hover:bg-{color}-600 disabled:bg-{color}-500 dark:bg-{color}-500 dark:hover:bg-{color}-600 dark:disabled:bg-{color}-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-{color}-500 dark:focus-visible:outline-{color}-400',
-        link: 'text-{color}-500 hover:text-{color}-500 disabled:text-{color}-500 dark:text-{color}-500 dark:hover:text-{color}-500 dark:disabled:text-{color}-300 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
+        solid: 'shadow-sm text-tuna dark:text-neutral-50 bg-{color}-500 hover:bg-{color}-600 disabled:bg-{color}-500 dark:bg-{color}-500 dark:hover:bg-primary-600 dark:disabled:bg-{color}-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-{color}-500 dark:focus-visible:outline-{color}-400',
+        link: 'text-tuna hover:text-{color}-500 disabled:text-{color}-500 dark:text-{color}-500 dark:hover:text-{color}-500 dark:disabled:text-{color}-300 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
+        ghost: 'text-tuna dark:text-neutral-50 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-primary-600 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
       }
     },
     input: {
@@ -89,4 +90,4 @@ export default defineAppConfig({
       color: 'text-tuna dark:text-slate-300'
     }
   },
-})  
+})

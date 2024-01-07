@@ -1,12 +1,7 @@
 <script setup lang="ts">
-interface Owner  {
-  email: string,
-  first_name: string,
-  last_name: string,
-  loading: boolean
-}
+import type { MyProfile } from "~/interface";
 
-defineProps<{state: Owner}>()
+defineProps<{state: MyProfile}>()
 </script>
 
 <template>
@@ -29,9 +24,7 @@ defineProps<{state: Owner}>()
               placeholder="Loading..."
               v-model="state.last_name" variant="outline" color="primary" type="text"/>
     </UFormGroup>
-
   </UForm>
-
 </template>
 
 <style scoped>

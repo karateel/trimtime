@@ -1,10 +1,11 @@
 <template>
-    <UTable :rows="people" :columns="columns"
+    <UTable  :columns="columns"
+        :loading="state.loading"
         :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }">
         <template #empty-state>
             <div class="flex flex-col items-center justify-center py-6 gap-3">
                 <span class="italic text-sm">No one here!</span>
-                <UButton label="Add people" @click="isOpen = true"/>
+                <UButton label="Add people" @click="openFormModal.toggleModal()"/>
             </div>
         </template>
         <template #actions-data="{ row }">
@@ -13,11 +14,36 @@
             </UDropdown>
         </template>
     </UTable>
-  <SettingsTeamModal :isOpen="isOpen"/>
+  <SettingsTeamModal/>
 </template>
 
 <script setup lang="ts">
-const isOpen = ref(false);
+const openFormModal = useTeamFormStore()
+
+const state = ref({
+  loading: true
+})
+
+const getTeam = async () => {
+  try {
+    const response = await fetch('/api/get-team', {
+      method: 'GET'
+    })
+    if (response.ok) {
+      const data = await response.json();
+      state.value = data
+      state.value.loading = false
+    } else {
+      console.error('Error creating user:', response.statusText);
+    }
+  } catch (e) {
+    console.error('Error:', e)
+  }
+}
+
+onMounted(() => {
+  getTeam()
+})
 
 const columns = [{
     key: 'name',
@@ -29,9 +55,6 @@ const columns = [{
     key: 'role',
     label: 'Role'
 }]
-
-const people = []
-
 const items = (row) => [
     [{
         label: 'Edit',

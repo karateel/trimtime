@@ -11,7 +11,7 @@
                 <UserAppAccount />
             </template>
             <template #team>
-                <SettingsAppTeam />
+                <SettingsAppTeam/>
             </template>
         </UTabs>
     </UContainer>
@@ -21,8 +21,8 @@
 useHead({
     title: 'Settings'
 })
+
 const user = useSupabaseUser()
-const formattedDate = ref('')
 
 const state = ref({
   email: '',

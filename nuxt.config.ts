@@ -19,10 +19,10 @@ export default defineNuxtConfig({
       viewport: 'width=device-width',
     }
   },
-  css: ['~/assets/main.css'],
+  css: ['@/assets/main.css'],
   imports: {
     dirs: [
-      '~/interface/'
+      '@/interface/'
     ],
     global: true
   },
