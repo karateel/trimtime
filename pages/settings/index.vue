@@ -21,9 +21,7 @@
 useHead({
     title: 'Settings'
 })
-
 const user = useSupabaseUser()
-
 const state = ref({
   email: '',
   first_name: '',
@@ -53,7 +51,7 @@ onMounted(() => {
 
 const items = [
     {
-        slot: 'myprofile',
+        slot: 'profile',
         label: 'My Profile'
     },
     {

@@ -2,33 +2,51 @@
 import type { TeamMember } from "@/interface";
 
 const state = ref(<TeamMember>{
-  first_name: undefined,
-  last_name: undefined,
-  instagram: undefined,
-  role: undefined,
-  email: undefined
+  first_name: undefined as string | undefined,
+  last_name: undefined as string | undefined,
+  role: undefined as string | undefined,
+  instagram: undefined as string | undefined,
+  email: undefined as string | undefined,
+  success: '',
+  error: '',
 })
 
 const createTeammate = async () => {
-  try {
-    const response = await fetch('/api/new-teammember', {
-      method: 'POST',
+  const { data, pending, error, refresh } = await useFetch('/api/new-team', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      first_name: state.value.first_name,
+      last_name: state.value.last_name,
+      instagram: state.value.instagram,
+      role: state.value.role,
+      email: state.value.email
     })
-    if (response.ok) {
-      const data = await response.json();
-      state.value = data
-    } else {
-      console.error('Error creating user:', response.statusText);
-    }
+  })
+  if (data && !error.value) {
+    state.value.success = 'Company created';
+    setTimeout(() => {
+      state.value.success = '';
+    }, 3000);
+  } else if (error.value) {
+    state.value.error = error.value.statusText || 'Unknown error occurred';
+    setTimeout(() => {
+      state.value.error = '';
+    }, 3000);
 
-  } catch (error) {
-    console.error('Error:', error);
+    if (error.value.data?.message === 'Company with this name already exists.') {
+      state.value.error = 'Company with this name already exists.';
+    }
   }
 }
 </script>
 
 <template>
   <UForm :state="state" @submit="createTeammate">
+    <AlertsSuccessAlert :success="state.success" :success-msg="state.success"/>
+    <AlertsErrorAlert :error="state.error" :error-msg="state.error"/>
     <UFormGroup label="First name" name="first_name">
       <UInput v-model="state.first_name" variant="outline" color="primary" placeholder="First name" type="text"/>
     </UFormGroup>

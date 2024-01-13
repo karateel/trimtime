@@ -5,26 +5,18 @@ const company = ref({
   name: undefined
 })
 const getCompany = async () => {
-  try {
-    const response = await fetch('/api/get-company', {
-      method: 'GET',
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-
-      if (!data || Object.keys(data).length === 0) {
-        console.warn('Company not found.');
-      } else {
-        company.value = data;
-      }
-    } else {
-      console.error('Error finding company:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Error:', error);
+  const { data, error } = await useFetch('/api/get-company', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  if(data.value) {
+    company.value.name = data.value.name
+  } else {
+    console.log(error.value)
   }
-};
+}
 
 onMounted(() => {
   getCompany()
@@ -41,7 +33,7 @@ onMounted(() => {
           </h3>
         </div>
       </template>
-      <SettingsTeamForm v-if="!company"/>
+      <SettingsTeamForm v-if="company"/>
       <SettingsCompanyForm v-else/>
       <template #footer>
         <div class="flex items-center justify-end">

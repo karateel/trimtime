@@ -45,6 +45,10 @@ onMounted(() => {
   getTeam()
 })
 
+const team = [{
+
+}]
+
 const columns = [{
     key: 'name',
     label: 'Name'
