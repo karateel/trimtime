@@ -1,51 +1,55 @@
 import { PrismaClient } from '@prisma/client';
-import { serverSupabaseUser } from "#supabase/server";
+import { serverSupabaseUser } from '#supabase/server';
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   try {
     const user = await serverSupabaseUser(event);
-
     if (!user) {
-      return sendError(event, createError({
-        statusCode: 401,
-        statusMessage: 'Unauthorized',
-      }));
+      throw new Error('Unauthorized access');
     }
 
-    const existingOwner = await prisma.owner.findUnique({
+    const { name } = await readBody(event)
+
+    if (!name) {
+      throw createError({
+        statusCode: '500',
+        statusMessage: 'Company name is required.',
+        data: {
+          myCustomField: true,
+          message: 'Company name is required.'
+        }
+      })
+    }
+
+    const isCompanyExist = await prisma.company.findFirst({
       where: {
-        id: user.id,
-      },
-    });
+        name: name
+      }
+    })
 
-    if (!existingOwner) {
-      return {
-        statusCode: 400,
-        body: {
-          message: 'Owner does not exist.',
-        },
-      };
+    if (isCompanyExist) {
+      throw createError({
+        statusCode: '500',
+        statusMessage: 'Company with this name already exists.',
+        data: {
+          myCustomField: true,
+          message: 'Company with this name already exists.'
+        }
+      })
     }
 
-    const companyData = {
-      name: event.body.name || '',
-      owner: user.id,
-    };
-
-    const createdCompany = await prisma.company.create({
-      data: companyData,
+    return await prisma.company.create({
+      data: {
+        name: name,
+        owner: user.id
+      },
     });
 
-    return createdCompany;
   } catch (error) {
-    console.error('Error creating company:', error);
-    return {
-      statusCode: 500,
-      body: {
-        message: 'Internal server error',
-      },
-    };
+    throw error;
+  } finally {
+    await prisma.$disconnect();
   }
 });

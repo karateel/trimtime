@@ -3,5 +3,7 @@ export interface TeamMember {
   last_name?: string,
   role?: string,
   instagram?: string,
-  email?: string
+  email?: string,
+  success: string,
+  error: string
 }

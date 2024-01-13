@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import { serverSupabaseUser } from "#supabase/server";
 
 const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
+  const user = await serverSupabaseUser(event);
   // const exisingTeamMember = await prisma.barber.findUnique({
   //   where: {
   //     email: this.email
@@ -16,6 +18,11 @@ export default defineEventHandler(async (event) => {
   //     },
   //   };
   // }
+  const companyId = await prisma.company.findUnique({
+    where: {
+      owner: user.id
+    }
+  })
 
   const createdTeamMember = await prisma.barber.create({
       data: {
@@ -23,7 +30,12 @@ export default defineEventHandler(async (event) => {
         role: '',
         instagram: '',
         email: '',
-        last_name: ''
+        last_name: '',
+        company: {
+          connect: {
+            id: companyId?.id
+          }
+        }
       }
   })
 
