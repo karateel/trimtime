@@ -11,7 +11,7 @@ const getCompany = async () => {
       'Content-Type': 'application/json'
     },
   })
-  if(data.value) {
+  if(data.value && !error.value) {
     company.value.name = data.value.name
   } else {
     console.log(error.value)

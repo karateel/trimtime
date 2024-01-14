@@ -9,7 +9,8 @@ export default defineEventHandler(async (event) => {
       first_name: true,
       last_name: true,
       email: true,
-      instagram: true
+      instagram: true,
+      role: true
     }
   })
   return team

@@ -58,6 +58,7 @@ export default defineAppConfig({
         background: 'bg-mercury/75 dark:bg-tundora/75'
       },
       background: "bg-mercury dark:bg-tundora",
+      container: "flex min-h-full items-center justify-center text-center",
     },
     card: {
       background: 'dark:bg-brown bg-white',

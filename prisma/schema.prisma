@@ -47,4 +47,6 @@ model Company {
   clients  Client[]
   owner    String
   ownerUser   Owner     @relation(fields: [owner], references: [id])
+
+  @@unique(fields: [id, owner], name: "companyId")
 }

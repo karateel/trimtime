@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MyProfile } from "~/interface";
+import type { MyProfile } from "@/interface";
 
 defineProps<{state: MyProfile}>()
 </script>
