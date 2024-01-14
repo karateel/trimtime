@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
     '@nuxt/ui',
-    // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
     '@pinia/nuxt',
   ],
@@ -16,7 +15,37 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'utf-8',
-      viewport: 'width=device-width',
+      viewport: 'width=device-width, initial-scale=1',
+      link: [
+        {
+          rel: 'apple-touch-icon',
+          href: '@assets/icons/180.png',
+          type: 'image/png',
+          sizes: '180x180',
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '@/assets/icons/167.png',
+          type: 'image/png',
+          sizes: '167x167',
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '@/assets/icons/152.png',
+          type: 'image/png',
+          sizes: '152x152',
+        }
+      ],
+      meta: [
+        {
+          name: 'apple-mobile-web-app-capable',
+          content: 'yes'
+        },
+        {
+          name: 'description',
+          content: 'CRM for the beauty salons and barbershops'
+        }
+      ]
     }
   },
   css: ['@/assets/main.css'],
@@ -208,8 +237,10 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
-      navigateFallback: '/',
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    client: {
+      installPrompt: true,
     },
     devOptions: {
       enabled: false,

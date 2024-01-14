@@ -4,15 +4,9 @@
             <h4 class="text-tuna dark:text-slate-300 text-shadow">Account Settings</h4>
         </div>
         <UTabs :items="items">
-            <template #myprofile>
-                <SettingsMyProfile :state="state"/>
-            </template>
-            <template #account>
-                <UserAppAccount />
-            </template>
-            <template #team>
-                <SettingsAppTeam/>
-            </template>
+            <template #profile><SettingsMyProfile :state="state"/></template>
+            <template #account><UserAppAccount/></template>
+            <template #team><SettingsAppTeam/></template>
         </UTabs>
     </UContainer>
 </template>
@@ -30,19 +24,19 @@ const state = ref({
 })
 
 const getOwner = async () => {
-  try {
-    const response = await fetch('/api/get-owner', {
-      method: 'GET',
-    })
-    if (response.ok) {
-      const data = await response.json();
-      state.value = data
-      state.value.loading = false
-    } else {
-      console.error('Error creating user:', response.statusText);
+  state.value.loading = true
+  const { data, error } = await useFetch('/api/get-owner', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
     }
-  } catch (error) {
-    console.error('Error:', error);
+  })
+  if(data.value && !error.value) {
+    state.value = {
+      ...state.value,
+      ...data.value,
+      loading: false
+    }
   }
 };
 onMounted(() => {

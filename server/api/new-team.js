@@ -1,43 +1,44 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 import { serverSupabaseUser } from "#supabase/server";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event);
-  // const exisingTeamMember = await prisma.barber.findUnique({
-  //   where: {
-  //     email: this.email
-  //   }
-  // })
-  // if (exisingTeamMember) {
-  //   return {
-  //     statusCode: 400,
-  //     body: {
-  //       message: 'User with this email already exists.',
-  //     },
-  //   };
-  // }
-  const companyId = await prisma.company.findUnique({
-    where: {
-      owner: user.id
+  try {
+    const user = await serverSupabaseUser(event);
+    const { first_name, last_name, role, instagram, email, phone, avatar_url, address } = await readBody(event);
+    const getCompany = await prisma.company.findFirst({
+      where: {
+        owner: user.id
+      }
+    });
+    if (!getCompany) {
+      throw new Error("Company not found for the user");
     }
-  })
 
-  const createdTeamMember = await prisma.barber.create({
+    return await prisma.barber.create({
       data: {
-        first_name: '',
-        role: '',
-        instagram: '',
-        email: '',
-        last_name: '',
+        first_name: first_name,
+        role: role,
+        instagram: instagram,
+        email: email,
+        last_name: last_name,
+        phone: phone,
+        avatar_url: avatar_url,
+        address: address,
         company: {
           connect: {
-            id: companyId?.id
+            id: getCompany.id
           }
         }
       }
-  })
-
-  return createdTeamMember
-})
+    });
+  } catch (e) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: e.message
+    })
+  } finally {
+    await prisma.$disconnect();
+  }
+});
